@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KJFM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-img {
+            height: 80px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2c3e50 0%, #e67e22 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #2c3e50 0%, #e67e22 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.05) 0%, rgba(230, 126, 34, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e0e6ed" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10px, 10px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #e67e22 50%, #2c3e50 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            color: #34495e;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2c3e50;
+            border: 2px solid rgba(44, 62, 80, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: #e67e22;
+            background: rgba(230, 126, 34, 0.1);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #e67e22 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(44, 62, 80, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #2c3e50 0%, #e67e22 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(230, 126, 34, 0.3);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .service-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+            color: #34495e;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.03) 0%, rgba(230, 126, 34, 0.03) 100%);
+        }
+
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #e67e22 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            color: #34495e;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(44, 62, 80, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .stat-label {
+            opacity: 0.8;
+            margin-top: 0.5rem;
+            color: #34495e;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(44, 62, 80, 0.2);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            color: #2c3e50;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(44, 62, 80, 0.6);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #e67e22;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(44, 62, 80, 0.05);
+            border-top: 1px solid rgba(44, 62, 80, 0.1);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #e67e22;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            opacity: 0.8;
+            text-decoration: none;
+            color: #34495e;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: #e67e22;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(44, 62, 80, 0.1);
+            opacity: 0.6;
+            color: #34495e;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Floating Elements */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.1) 0%, rgba(230, 126, 34, 0.1) 100%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        } 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: -2s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -4s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: -1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <img src="./kj-fm-logo.png" alt="KJFM" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Quote</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <div class="hero-content">
+                <h1>Expert Facility Management</h1>
+                <p>Transform your workplace with comprehensive facility solutions that optimize operations, reduce costs, and enhance productivity.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary">Our Services</a>
+                    <a href="#contact" class="btn-secondary">Schedule Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <h2 class="section-title">Comprehensive Solutions</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Property Management</h3>
+                    <p>Complete building maintenance, space optimization, and property oversight to ensure your facilities operate at peak efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Maintenance Services</h3>
+                    <p>Preventive and reactive maintenance programs that minimize downtime and extend the life of your critical systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌱</div>
+                    <h3>Sustainability Solutions</h3>
+                    <p>Energy management and green initiatives that reduce environmental impact while lowering operational costs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔐</div>
+                    <h3>Security & Safety</h3>
+                    <p>Comprehensive security protocols and safety compliance to protect your people, assets, and operations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧹</div>
+                    <h3>Cleaning Services</h3>
+                    <p>Professional cleaning and hygiene solutions that maintain pristine environments for employees and visitors.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Data & Analytics</h3>
+                    <p>Smart facility insights and performance analytics to optimize operations and inform strategic decisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Excellence in Every Detail</h2>
+                    <p>With over a decade of experience in facility management, we understand that every building is unique. Our team of certified professionals delivers tailored solutions that align with your business objectives.</p>
+                    <p>From corporate offices to industrial complexes, we manage facilities of all sizes with the same commitment to quality, efficiency, and innovation. Our integrated approach ensures seamless operations while you focus on your core business.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50M+</span>
+                            <div class="stat-label">Sq Ft Managed</div>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99%</span>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); height: 400px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        🏗️
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2 class="section-title">Ready to Transform Your Facility?</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">Get in touch with our experts to discuss your facility management needs and discover how we can optimize your operations.</p>
+            
+            <form class="contact-form">
+                <div class="form-row">
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                </div>
+                <div class="form-row">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone" placeholder="Phone Number">
+                </div>
+                <input type="text" name="company" placeholder="Company Name">
+                <select name="service" style="background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(44, 62, 80, 0.2); border-radius: 10px; padding: 1rem 1.5rem; color: #2c3e50; font-size: 1rem;">
+                    <option value="">Service Interest</option>
+                    <option value="Property Management">Property Management</option>
+                    <option value="Maintenance Services">Maintenance Services</option>
+                    <option value="Sustainability Solutions">Sustainability Solutions</option>
+                    <option value="Security & Safety">Security & Safety</option>
+                    <option value="Cleaning Services">Cleaning Services</option>
+                    <option value="Data & Analytics">Data & Analytics</option>
+                </select>
+                <textarea name="message" placeholder="Tell us about your facility management needs..."></textarea>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KJFM</h3>
+                <p>Transforming workplaces through expert facility management solutions. Your success is our mission.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <p><a href="#">Property Management</a></p>
+                <p><a href="#">Maintenance Services</a></p>
+                <p><a href="#">Sustainability Solutions</a></p>
+                <p><a href="#">Security & Safety</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📞 Anjan BC +91 9663038067</p>
+                <p>📞 Vanitha A +91 9972006965</p>
+                <p>📧 info@kjfm.in</p>
+                <p>📍 801, 2nd C Main Rd, HRBR Layout 1st Block, Balaji Layout, OMBR Layout, Kalyan Nagar, Bengaluru, Karnataka 560043</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KJFM. All rights reserved. | Designed for excellence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Form submission with Teams notification
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            
+            // Get form data
+            const firstName = this.querySelector('input[name="firstName"]').value;
+            const lastName = this.querySelector('input[name="lastName"]').value;
+            const email = this.querySelector('input[name="email"]').value;
+            const phone = this.querySelector('input[name="phone"]').value;
+            const company = this.querySelector('input[name="company"]').value;
+            const service = this.querySelector('select[name="service"]').value;
+            const message = this.querySelector('textarea[name="message"]').value;
+            
+            btn.textContent = 'Sending...';
+            btn.style.background = 'linear-gradient(135deg, #f39c12 0%, #e67e22 100%)';
+            
+            // Check if webhook URL is configured
+            const webhookUrl = 'https://kusmithajeevanfm.webhook.office.com/webhookb2/98170426-cf61-4ae7-a00f-67c1e90ac3f3@3e068628-6f91-4f13-818b-d1a007945ae0/IncomingWebhook/4c4cd83b5a764e009c48db5d3d51f1bf/d5509469-b0bb-4c47-a992-77cdb861d229/V2WWOQFgpeB6iMYTKp0uijfmWGxTYf-noUBXnVGm72o3k1';
+            
+            if (webhookUrl.includes('YOUR_WEBHOOK_ID_HERE')) {
+                // Show test mode message
+                console.log('Form Data to be sent to Teams:', {
+                    firstName, lastName, email, phone, company, service, message
+                });
+                
+                alert('⚠️ Test Mode: Webhook URL not configured yet!\n\nForm data logged to console. Replace YOUR_WEBHOOK_ID_HERE with your actual Teams webhook URL.');
+                
+                btn.textContent = 'Configure Webhook First';
+                btn.style.background = 'linear-gradient(135deg, #f39c12 0%, #e67e22 100%)';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)';
+                }, 3000);
+                return;
+            }
+            
+            // Send to Teams webhook
+            sendToTeams({
+                firstName,
+                lastName,
+                email,
+                phone,
+                company,
+                service,
+                message
+            }).then(() => {
+                btn.textContent = 'Message Sent to Teams!';
+                btn.style.background = 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)';
+                    this.reset();
+                }, 3000);
+            }).catch((error) => {
+                console.error('Error sending to Teams:', error);
+                
+                // Show more helpful error message
+                let errorMsg = 'Error - Try Again';
+                if (error.message.includes('CORS')) {
+                    errorMsg = 'CORS Error - Check Console';
+                } else if (error.message.includes('fetch')) {
+                    errorMsg = 'Network Error';
+                } else if (error.message.includes('404')) {
+                    errorMsg = 'Webhook Not Found';
+                }
+                
+                btn.textContent = errorMsg;
+                btn.style.background = 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)';
+                }, 4000);
+            });
+        });
+
+        // Function to send message to Teams
+        async function sendToTeams(formData) {
+            // REPLACE THIS URL WITH YOUR ACTUAL TEAMS WEBHOOK URL
+            const webhookUrl = 'https://kusmithajeevanfm.webhook.office.com/webhookb2/98170426-cf61-4ae7-a00f-67c1e90ac3f3@3e068628-6f91-4f13-818b-d1a007945ae0/IncomingWebhook/4c4cd83b5a764e009c48db5d3d51f1bf/d5509469-b0bb-4c47-a992-77cdb861d229/V2WWOQFgpeB6iMYTKp0uijfmWGxTYf-noUBXnVGm72o3k1'; 
+            
+            const teamsMessage = {
+                "@type": "MessageCard",
+                "@context": "http://schema.org/extensions",
+                "themeColor": "e67e22",
+                "summary": "New Facility Management Inquiry",
+                "sections": [{
+                    "activityTitle": "🏢 New Contact Form Submission",
+                    "activitySubtitle": "KJFM Facility Management",
+                    "facts": [
+                        {
+                            "name": "Name",
+                            "value": `${formData.firstName} ${formData.lastName}`
+                        },
+                        {
+                            "name": "Email",
+                            "value": formData.email
+                        },
+                        {
+                            "name": "Phone",
+                            "value": formData.phone || 'Not provided'
+                        },
+                        {
+                            "name": "Company",
+                            "value": formData.company || 'Not provided'
+                        },
+                        {
+                            "name": "Service Interest",
+                            "value": formData.service || 'Not specified'
+                        },
+                        {
+                            "name": "Message",
+                            "value": formData.message || 'No message provided'
+                        },
+                        {
+                            "name": "Submitted",
+                            "value": new Date().toLocaleString()
+                        }
+                    ],
+                    "markdown": true
+                }],
+                "potentialAction": [{
+                    "@type": "OpenUri",
+                    "name": "Reply via Email",
+                    "targets": [{
+                        "os": "default",
+                        "uri": `mailto:${formData.email}?subject=Re: Facility Management Inquiry`
+                    }]
+                }]
+            };
+
+            try {
+                console.log('Sending to Teams webhook:', webhookUrl);
+                console.log('Message payload:', teamsMessage);
+                
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(teamsMessage),
+                    mode: 'no-cors' // This helps with CORS issues but limits response access
+                });
+
+                // With no-cors mode, we can't check response status
+                // So we'll assume success if no error is thrown
+                console.log('Teams webhook request sent');
+                return true;
+
+            } catch (error) {
+                console.error('Detailed error:', error);
+                throw error;
+            }
+        }
+
+        // Animate service cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initially hide service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
