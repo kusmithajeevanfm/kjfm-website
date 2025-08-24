@@ -13,11 +13,11 @@
                 <img src="./kjfm_logo.png" alt="KJFM" class="logo-img">
             </div>
             <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#services" onclick="showservicesSection()">Services</a></li>
+                <li><a href="#about" onclick="showaboutSection()">About</a></li>
+                <li><a href="#contact" onclick="showcontactSection()">Contact</a></li>
             </ul>
-            <a href="#contact" class="cta-button">Get Quote</a>
+            <a class="cta-button" onclick="showcontactSection()">Get Quote</a>
         </nav>
     </header>
 
@@ -603,7 +603,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 KJFM. All rights reserved. | Designed for excellence.</p>
+            <p><b>&copy;2025 Kusmitha Jeevan Facility Management (KJFM). All rights reserved.</b></p>
+            <p>This website and its contents, including text, graphics, logos, and design elements, are the intellectual property of KJFM and are protected under applicable copyright and intellectual property laws. No part of this website may be reproduced, distributed, or transmitted in any form without prior written permission from KJFM. Unauthorized use may result in legal action.</p>
         </div>
     </footer>
 
@@ -677,6 +678,18 @@
         function showcontactSection() {
             // Redirect to contact section on another page
             window.location.href = "index.html#contact";  
+        }
+
+        // Show service section
+        function showservicesSection() {
+            // Redirect to contact section on another page
+            window.location.href = "index.html#services";  
+        }
+
+        // Show about section
+        function showaboutSection() {
+            // Redirect to contact section on another page
+            window.location.href = "index.html#about";  
         }
 
         // Handle browser back/forward buttons
