@@ -13,6 +13,7 @@
                 <img src="./kjfm_logo.png" alt="KJFM" class="logo-img">
             </div>
             <ul class="nav-links">
+                <li><a href="#home" onclick="showhomeSection()">Home</a></li>
                 <li><a href="#services" onclick="showservicesSection()">Services</a></li>
                 <li><a href="#about" onclick="showaboutSection()">About</a></li>
                 <li><a href="#contact" onclick="showcontactSection()">Contact</a></li>
@@ -22,7 +23,7 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section id="home" class="hero">
             <div class="floating-shapes">
                 <div class="shape"></div>
                 <div class="shape"></div>
@@ -680,6 +681,12 @@
             // Update URL
             history.pushState({page: 'main'}, '', '/');
             window.scrollTo(0, 0);
+        }
+
+        // Show home section
+        function showhomeSection() {
+            // Redirect to contact section on another page
+            window.location.href = "index.html#home";  
         }
 
         // Show contact section
