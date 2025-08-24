@@ -504,7 +504,7 @@ body {
 /* Customer Section*/
 .customer-logo {
     display: flex;              
-    justify-content: Left;    
+    justify-content: center;    
     align-items: center;        
     gap: 40px;                  
 }
