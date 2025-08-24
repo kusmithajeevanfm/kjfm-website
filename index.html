@@ -123,12 +123,13 @@
                 <input type="text" name="company" placeholder="Company Name">
                 <select name="service" style="background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(44, 62, 80, 0.2); border-radius: 10px; padding: 1rem 1.5rem; color: #2c3e50; font-size: 1rem;">
                     <option value="">Service Interest</option>
-                    <option value="Property Management">Property Management</option>
-                    <option value="Maintenance Services">Maintenance Services</option>
-                    <option value="Sustainability Solutions">Sustainability Solutions</option>
-                    <option value="Security & Safety">Security & Safety</option>
-                    <option value="Cleaning Services">Cleaning Services</option>
-                    <option value="Data & Analytics">Data & Analytics</option>
+                    <option value="Property Management">Security & Safety Service</option>
+                    <option value="Maintenance Services">House Keeping Service</option>
+                    <option value="Sustainability Solutions">Pest Control Service</option>
+                    <option value="Security & Safety">Gardening Service</option>
+                    <option value="Cleaning Services">STP WTP Maintenance</option>
+                    <option value="Data & Analytics">Swimming Pool Maintenance</option>
+                    <option value="Data & Analytics">Technical Service</option>
                 </select>
                 <textarea name="message" placeholder="Tell us about your facility management needs..."></textarea>
                 <button type="submit" class="submit-btn">Send Message</button>
@@ -208,7 +209,7 @@
             btn.style.background = 'linear-gradient(135deg, #f39c12 0%, #e67e22 100%)';
             
             // Check if webhook URL is configured
-            const webhookUrl = 'https://kusmithajeevanfm.webhook.office.com/webhookb2/98170426-cf61-4ae7-a00f-67c1e90ac3f3@3e068628-6f91-4f13-818b-d1a007945ae0/IncomingWebhook/4c4cd83b5a764e009c48db5d3d51f1bf/d5509469-b0bb-4c47-a992-77cdb861d229/V2WWOQFgpeB6iMYTKp0uijfmWGxTYf-noUBXnVGm72o3k1';
+            const webhookUrl = 'https://kusmithajeevanfm.webhook.office.com/webhookb2/98170426-cf61-4ae7-a00f-67c1e90ac3f3@3e068628-6f91-4f13-818b-d1a007945ae0/IncomingWebhook/95a5a2fafaf940c4a003c4942802887b/d5509469-b0bb-4c47-a992-77cdb861d229/V2rPzWsdEogZtgwtH80EDpVcQ7_EKZof4tQWqwJjJy2xs1';
             
             if (webhookUrl.includes('YOUR_WEBHOOK_ID_HERE')) {
                 // Show test mode message
@@ -269,7 +270,7 @@
         // Function to send message to Teams
         async function sendToTeams(formData) {
             // REPLACE THIS URL WITH YOUR ACTUAL TEAMS WEBHOOK URL
-            const webhookUrl = 'https://kusmithajeevanfm.webhook.office.com/webhookb2/98170426-cf61-4ae7-a00f-67c1e90ac3f3@3e068628-6f91-4f13-818b-d1a007945ae0/IncomingWebhook/4c4cd83b5a764e009c48db5d3d51f1bf/d5509469-b0bb-4c47-a992-77cdb861d229/V2WWOQFgpeB6iMYTKp0uijfmWGxTYf-noUBXnVGm72o3k1'; 
+            const webhookUrl = 'https://kusmithajeevanfm.webhook.office.com/webhookb2/98170426-cf61-4ae7-a00f-67c1e90ac3f3@3e068628-6f91-4f13-818b-d1a007945ae0/IncomingWebhook/95a5a2fafaf940c4a003c4942802887b/d5509469-b0bb-4c47-a992-77cdb861d229/V2rPzWsdEogZtgwtH80EDpVcQ7_EKZof4tQWqwJjJy2xs1'; 
             
             const teamsMessage = {
                 "@type": "MessageCard",
