@@ -240,6 +240,10 @@ body {
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .service-card::before {
@@ -284,10 +288,134 @@ body {
             color: #2c3e50;
         }
 
-        .service-card p {
-            opacity: 0.8;
-            line-height: 1.6;
+
+        /* Service Detail Pages */
+        .service-detail {
+            display: none;
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-detail.active {
+            display: block;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .service-detail-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .service-detail h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #e67e22 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-detail-intro {
+            font-size: 1.2rem;
             color: #34495e;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .subcategories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .subcategory-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(44, 62, 80, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .subcategory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .subcategory-card h3 {
+            color: #e67e22;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .subcategory-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .subcategory-card li {
+            padding: 0.5rem 0;
+            color: #34495e;
+            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .subcategory-card li:before {
+            content: '✓';
+            color: #e67e22;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .subcategory-card li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.03) 0%, rgba(230, 126, 34, 0.03) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .cta-section p {
+            color: #34495e;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         /* About Section */
